@@ -1,9 +1,18 @@
 package victus.rtrackers.model;
 
-import lombok.Getter;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+
+@Entity
+@Table(name = "trades")
+@Data
+@NoArgsConstructor
 public class Trade {
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private String symbol; // "AAPL", "EURO/USD"
     private int quantity;
     private double price;

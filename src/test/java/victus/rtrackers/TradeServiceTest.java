@@ -1,15 +1,16 @@
 package victus.rtrackers;
-
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import victus.rtrackers.model.Trade;
 import victus.rtrackers.repository.TradeRepository;
 import victus.rtrackers.services.TradeService;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@ExtendWith(MockitoExtension.class)
 public class TradeServiceTest {
     private TradeRepository mockRepository = Mockito.mock(TradeRepository.class);
     private RiskCalculator mockRiskCalculator = Mockito.mock(RiskCalculator.class);

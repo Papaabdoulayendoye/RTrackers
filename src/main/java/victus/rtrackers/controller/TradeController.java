@@ -1,5 +1,8 @@
 package victus.rtrackers.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import victus.rtrackers.model.Trade;
 import victus.rtrackers.repository.TradeRepository;
@@ -25,9 +28,14 @@ public class TradeController {
     public Trade save(@RequestBody Trade trade) {
         return tradeService.addTrade(trade);
     }
-    @DeleteMapping
-    public void deleteById(@RequestBody Trade trade) {
-        tradeService.deleteTrade(trade);
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+        if (!tradeRepository.existsById(id)) {
+            return ResponseEntity.notFound().build(); // 404
+        }
+        tradeService.deleteTrade(id);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("risk/{level}")

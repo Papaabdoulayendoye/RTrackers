@@ -23,10 +23,14 @@ public class TradeService {
     public Trade updateTrade(Trade trade) {
         return tradeRepository.save(trade);
     }
-    public Trade deleteTrade(Trade trade) {
-        tradeRepository.delete(trade);
-        return trade;
+    public void deleteTrade(Long id) {
+        if (tradeRepository.existsById(id)) tradeRepository.deleteById(id);
     }
+    /*
+    public void deleteTrade(Long id) {
+        tradeRepository.deleteById(id);
+    }
+    * */
 
     public List<Trade> getAllTrades() {
         return tradeRepository.findAll();
